@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @group_youth.Name %>
+</p>
+
+<p>
+  <strong>Lugar de Reunión:</strong>
+  <%= @group_youth.gatheringPlace %>
+</p>
+
+<p>
+  <strong>Horarios:</strong>
+  <%= @group_youth.schedules %>
+</p>
+
+<p>
+  <strong>Encargados:</strong>
+  <%= @group_youth.managers_id %>
+</p>
+
+<p>
+  <strong>Fecha de Creación:</strong>
+  <%= @group_youth.creationDate %>
+</p>
+
+<p>
+  <strong>Parroquia:</strong>
+  <%= @group_youth.parish_id %>
+</p>
+
+<%= link_to 'Modificar', edit_group_youth_path(@group_youth) %> |
+<%= link_to 'Lista de Grupos', group_youths_path %>

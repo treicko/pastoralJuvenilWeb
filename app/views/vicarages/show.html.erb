@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @vicarage.Name %>
+</p>
+
+<p>
+  <strong>Encargados:</strong>
+  <%= @vicarage.managers_id %>
+</p>
+
+<%= link_to 'Modificar', edit_vicarage_path(@vicarage) %> |
+<%= link_to 'Lista de Vicarías', vicarages_path %>

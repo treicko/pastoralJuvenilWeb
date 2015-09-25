@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Name: MyString
+  address: MyString
+  managers_id: MyString
+  vicarage_id: 1
+
+two:
+  Name: MyString
+  address: MyString
+  managers_id: MyString
+  vicarage_id: 1

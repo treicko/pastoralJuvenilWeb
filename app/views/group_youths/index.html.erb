@@ -1,0 +1,35 @@
+<h1>Lista de Grupos Juveniles</h1>
+
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Lugar de reunión</th>
+      <th>Horarios</th>
+      <th>Encargados</th>
+      <th>Fecha de Creación</th>
+      <th>Parroquia</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @group_youths.each do |group_youth| %>
+      <tr>
+        <td><%= group_youth.Name %></td>
+        <td><%= group_youth.gatheringPlace %></td>
+        <td><%= group_youth.schedules %></td>
+        <td><%= group_youth.managers_id %></td>
+        <td><%= group_youth.creationDate %></td>
+        <td><%= group_youth.parish_id %></td>
+        <td><%= link_to 'Ver', group_youth %></td>
+        <td><%= link_to 'Modificar', edit_group_youth_path(group_youth) %></td>
+        <td><%= link_to 'Eliminar', group_youth, method: :delete, data: { confirm: 'Está seguro que desea eliminar este grupo juvenil?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'New Group youth', new_group_youth_path %>

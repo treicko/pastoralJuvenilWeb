@@ -1,0 +1,31 @@
+<h1>Lista de Parroquias</h1>
+
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Dirección</th>
+      <th>Encargados</th>
+      <th>Vicaría</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @parishes.each do |parish| %>
+      <tr>
+        <td><%= parish.Name %></td>
+        <td><%= parish.address %></td>
+        <td><%= parish.managers_id %></td>
+        <td><%= parish.vicarage_id %></td>
+        <td><%= link_to 'Ver', parish %></td>
+        <td><%= link_to 'Modificar', edit_parish_path(parish) %></td>
+        <td><%= link_to 'Eliminar', parish, method: :delete, data: { confirm: 'Esta seguro que desea eliminar esta parroquia?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'New Parish', new_parish_path %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Name: MyString
+  gatheringPlace: MyString
+  schedules: MyString
+  managers_id: MyString
+  creationDate: 2015-09-24
+  parish_id: 1
+
+two:
+  Name: MyString
+  gatheringPlace: MyString
+  schedules: MyString
+  managers_id: MyString
+  creationDate: 2015-09-24
+  parish_id: 1

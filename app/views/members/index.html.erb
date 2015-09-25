@@ -1,0 +1,31 @@
+<h1>Lista de Miembros</h1>
+
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Nombre Completo</th>
+      <th>Fecha de Nacimiento</th>
+      <th>Tel&eacute;fono</th>
+      <th>Gurpo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @members.each do |member| %>
+      <tr>
+        <td><%= member.fullName %></td>
+        <td><%= member.birthDate %></td>
+        <td><%= member.phone %></td>
+        <td><%= member.group_id %></td>
+        <td><%= link_to 'Ver', member %></td>
+        <td><%= link_to 'Modificar', edit_member_path(member) %></td>
+        <td><%= link_to 'Eliminar', member, method: :delete, data: { confirm: 'Esta seguro de eliminar este Integrante?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'New Member', new_member_path %>

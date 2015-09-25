@@ -1,0 +1,27 @@
+<h1>Lista de Vicarias</h1>
+
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Encargados</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vicarages.each do |vicarage| %>
+      <tr>
+        <td><%= vicarage.Name %></td>
+        <td><%= vicarage.managers_id %></td>
+        <td><%= link_to 'Ver', vicarage %></td>
+        <td><%= link_to 'Modificar', edit_vicarage_path(vicarage) %></td>
+        <td><%= link_to 'Eliminar', vicarage, method: :delete, data: { confirm: 'Esta seguro que desea elimiar esta Vicaría?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'New Vicarage', new_vicarage_path %>

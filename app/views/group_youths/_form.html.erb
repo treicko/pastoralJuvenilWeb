@@ -1,0 +1,41 @@
+<%= form_for(@group_youth) do |f| %>
+  <% if @group_youth.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group_youth.errors.count, "error") %> prohibited this group_youth from being saved:</h2>
+
+      <ul>
+      <% @group_youth.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Nombre %><br>
+    <%= f.text_field :Name %>
+  </div>
+  <div class="field">
+    <%= f.label :Lugar_de_reunión %><br>
+    <%= f.text_field :gatheringPlace %>
+  </div>
+  <div class="field">
+    <%= f.label :Horarios %><br>
+    <%= f.text_field :schedules %>
+  </div>
+  <div class="field">
+    <%= f.label :Encargados %><br>
+    <%= f.text_field :managers_id %>
+  </div>
+  <div class="field">
+    <%= f.label :Fecha_de_creación %><br>
+    <%= f.date_select :creationDate %>
+  </div>
+  <div class="field">
+    <%= f.label :Parroquia %><br>
+    <%= f.number_field :parish_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Crear Grupo Juvenil', :class => 'btn btn-info'%>
+  </div>
+<% end %>

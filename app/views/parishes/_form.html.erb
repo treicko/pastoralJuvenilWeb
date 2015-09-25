@@ -1,0 +1,33 @@
+<%= form_for(@parish) do |f| %>
+  <% if @parish.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@parish.errors.count, "error") %> prohibited this parish from being saved:</h2>
+
+      <ul>
+      <% @parish.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Nombre %><br>
+    <%= f.text_field :Name %>
+  </div>
+  <div class="field">
+    <%= f.label :Dirección %><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :Encargados %><br>
+    <%= f.text_field :managers_id %>
+  </div>
+  <div class="field">
+    <%= f.label :Vicaría %><br>
+    <%= f.number_field :vicarage_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Crear Parroquia', :class => 'btn btn-info'%>
+  </div>
+<% end %>

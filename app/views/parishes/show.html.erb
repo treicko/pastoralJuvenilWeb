@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @parish.Name %>
+</p>
+
+<p>
+  <strong>Dirección:</strong>
+  <%= @parish.address %>
+</p>
+
+<p>
+  <strong>Encargados:</strong>
+  <%= @parish.managers_id %>
+</p>
+
+<p>
+  <strong>Vicarías:</strong>
+  <%= @parish.vicarage_id %>
+</p>
+
+<%= link_to 'Modificar', edit_parish_path(@parish) %> |
+<%= link_to 'Lista de Parroquias', parishes_path %>

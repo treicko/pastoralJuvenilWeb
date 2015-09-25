@@ -1,0 +1,25 @@
+<%= form_for(@vicarage) do |f| %>
+  <% if @vicarage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vicarage.errors.count, "error") %> prohibited this vicarage from being saved:</h2>
+
+      <ul>
+      <% @vicarage.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Nombre %><br>
+    <%= f.text_field :Name %>
+  </div>
+  <div class="field">
+    <%= f.label :Encargados %><br>
+    <%= f.text_field :managers_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Crear Vicaría', :class => 'btn btn-info'%>
+  </div>
+<% end %>

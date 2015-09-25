@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PastoralJuvenilWeb</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Pastoral Juvenil</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Vicar&iacute;as <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/vicarages">Vicar&iacute;as</a></li>
+            <li class="divider"></li>
+            <li><a href="/vicarages/new"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nueva vicar&iacute;a</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Parroquias <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/parishes">Parroquias</a></li>
+            <li class="divider"></li>
+            <li><a href="/parishes/new"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nueva Parroquia</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Grupos <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/group_youths">Grupos</a></li>
+            <li class="divider"></li>
+            <li><a href="/group_youths/new"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo Grupo</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Miembros <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/members">Miembros</a></li>
+            <li class="divider"></li>
+            <li><a href="/members/new"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo Integrante</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href=""><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Usuario</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+	<%= yield %>
+</div>
+
+</body>
+</html>
