@@ -28,7 +28,7 @@ class VicaragesController < ApplicationController
 
     respond_to do |format|
       if @vicarage.save
-        format.html { redirect_to @vicarage, notice: 'Vicarage was successfully created.' }
+        format.html { redirect_to @vicarage, success: 'La Vicaría fue <strong>registrada</strong> exitosamente.' }
         format.json { render :show, status: :created, location: @vicarage }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class VicaragesController < ApplicationController
   def update
     respond_to do |format|
       if @vicarage.update(vicarage_params)
-        format.html { redirect_to @vicarage, notice: 'Vicarage was successfully updated.' }
+        format.html { redirect_to @vicarage, success: 'La Vicaría fue <strong>modificada</strong> exitosamente.' }
         format.json { render :show, status: :ok, location: @vicarage }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class VicaragesController < ApplicationController
   def destroy
     @vicarage.destroy
     respond_to do |format|
-      format.html { redirect_to vicarages_url, notice: 'Vicarage was successfully destroyed.' }
+      format.html { redirect_to vicarages_url, success: 'La Vicaría fue <strong>eliminada</strong> exitosamente.' }
       format.json { head :no_content }
     end
   end

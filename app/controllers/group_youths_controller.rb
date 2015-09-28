@@ -28,7 +28,7 @@ class GroupYouthsController < ApplicationController
 
     respond_to do |format|
       if @group_youth.save
-        format.html { redirect_to @group_youth, notice: 'Group youth was successfully created.' }
+        format.html { redirect_to @group_youth, success: 'El grupo fue <strong>registrado</strong> exitosamente.' }
         format.json { render :show, status: :created, location: @group_youth }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class GroupYouthsController < ApplicationController
   def update
     respond_to do |format|
       if @group_youth.update(group_youth_params)
-        format.html { redirect_to @group_youth, notice: 'Group youth was successfully updated.' }
+        format.html { redirect_to @group_youth, success: 'El grupo fue <strong>modificado</strong> exitosamente.' }
         format.json { render :show, status: :ok, location: @group_youth }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class GroupYouthsController < ApplicationController
   def destroy
     @group_youth.destroy
     respond_to do |format|
-      format.html { redirect_to group_youths_url, notice: 'Group youth was successfully destroyed.' }
+      format.html { redirect_to group_youths_url, success: 'El grupo fue <strong>eliminado</strong> exitosamente.' }
       format.json { head :no_content }
     end
   end

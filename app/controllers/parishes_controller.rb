@@ -28,7 +28,7 @@ class ParishesController < ApplicationController
 
     respond_to do |format|
       if @parish.save
-        format.html { redirect_to @parish, notice: 'Parish was successfully created.' }
+        format.html { redirect_to @parish, success: 'La Parroquia fue <strong>registrada</strong> exitosamente.' }
         format.json { render :show, status: :created, location: @parish }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ParishesController < ApplicationController
   def update
     respond_to do |format|
       if @parish.update(parish_params)
-        format.html { redirect_to @parish, notice: 'Parish was successfully updated.' }
+        format.html { redirect_to @parish, success: 'La parroquia fue <strong>modificada</strong> exitosamete.' }
         format.json { render :show, status: :ok, location: @parish }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class ParishesController < ApplicationController
   def destroy
     @parish.destroy
     respond_to do |format|
-      format.html { redirect_to parishes_url, notice: 'Parish was successfully destroyed.' }
+      format.html { redirect_to parishes_url, success: 'La parroquia fue <strong>eliminada</strong> exitosamente.' }
       format.json { head :no_content }
     end
   end
