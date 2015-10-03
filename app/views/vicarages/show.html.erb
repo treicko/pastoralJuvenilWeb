@@ -1,14 +1,24 @@
+<div class="container">
+<h1 align="center">Vicar&iacute;a</h1><br/>
+	<div class="col-lg-offset-5 col-md-offset-5 col-xs-12 col-sm-9 col-md-6 col-lg-6">
+		<p>
+		  <strong>Nombre:</strong>
+		  <%= @vicarage.Name %>
+		</p>
 
-<h1>Vicar&iacute;a:</h1>
-<p>
-  <strong>Nombre:</strong>
-  <%= @vicarage.Name %>
-</p>
-
-<p>
-  <strong>Encargados:</strong>
-  <%= @vicarage.managers_id %>
-</p>
-
-<%= link_to 'Modificar', edit_vicarage_path(@vicarage) %> |
-<%= link_to 'Lista de Vicarías', vicarages_path %>
+		<p>
+		  <strong>Encargados:</strong>
+		  <%= @vicarage.managers_id %>
+		</p>
+	</div>
+	<div class="col-lg-offset-4 col-md-offset-4" align="center">
+		<div class="col-xs-12 col-sm-9 col-md-4 col-lg-4">
+		<br/>
+			<%= link_to 'Modificar', edit_vicarage_path(@vicarage), {:class=>"btn btn-primary btn-lg", :style=>'width:100%;'} %>
+		</div>
+		<div class="col-xs-12 col-sm-9 col-md-4 col-lg-4">
+		<br/>
+			<%= link_to 'Lista de Vicarías', vicarages_path, {:class=>"btn btn-success btn-lg", :style=>'width:100%;'} %>
+		</div>
+	</div>
+</div>

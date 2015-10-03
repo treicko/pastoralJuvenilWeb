@@ -54,16 +54,14 @@
     </div>
   </div>
 </nav>
-<% flash.each do |key, value| %>
-  <div class="row">
-    <div class="container">
-      <div class="alert alert-dismissible alert-<%= key %>">
+  <% flash.each do |key, value| %>
+      <div class="alert alert-dismissible alert-<%= key %>" align="center">
         <button type="button" class="close" data-dismiss="alert">×</button>
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"> </span>
         <%= value.html_safe %>
       </div>
-    </div>
-  </div>
-<% end %>
+  <% end %>
+
 <div class="row">
   <div class="container">
   	<%= yield %>

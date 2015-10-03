@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :vicarages
-
+    get "vicarages/:id" => "vicarages#destroy"
   resources :parishes
 
   resources :group_youths

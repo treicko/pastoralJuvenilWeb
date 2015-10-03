@@ -1,24 +1,24 @@
-<p id="notice"><%= notice %></p>
+<div class="Container">
+	<h1 align="Center">Datos de Parroquia</h1>
+	<div class="col-lg-offset-5 col-md-offset-5 col-xs-12 col-sm-9 col-md-6 col-lg-6">
+		<br/>
+		<p>
+		  <strong>Nombre:</strong>
+		  <%= @parish.Name %>
+		</p>
+		<p>
+		  <strong>Dirección:</strong>
+		  <%= @parish.address %>
+		</p>
+		<p>
+		  <strong>Encargados:</strong>
+		  <%= @parish.managers_id %>
+		</p>
+		<p>
+		  <strong>Vicarías:</strong>
+		  <%= if(@parish.vicarage_id != nil) then Vicarage.find(@parish.vicarage_id).Name end%>
+		</p>
+		<%= link_to 'Modificar', edit_parish_path(@parish), :class=>"col-lg-offset-0 btn btn-primary btn-lg"%>
+	</div>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @parish.Name %>
-</p>
-
-<p>
-  <strong>Dirección:</strong>
-  <%= @parish.address %>
-</p>
-
-<p>
-  <strong>Encargados:</strong>
-  <%= @parish.managers_id %>
-</p>
-
-<p>
-  <strong>Vicarías:</strong>
-  <%= @parish.vicarage_id %>
-</p>
-
-<%= link_to 'Modificar', edit_parish_path(@parish) %> |
-<%= link_to 'Lista de Parroquias', parishes_path %>
+</div>

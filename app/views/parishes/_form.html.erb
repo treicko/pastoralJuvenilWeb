@@ -1,33 +1,43 @@
-<%= form_for(@parish) do |f| %>
-  <% if @parish.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@parish.errors.count, "error") %> prohibited this parish from being saved:</h2>
+<div class="container">
+  <div class="col-lg-offset-3 col-md-offset-3 col-xs-12 col-sm-9 col-md-6 col-lg-6">
+    <%= form_for(@parish) do |f| %>
+      <% if @parish.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@parish.errors.count, "error") %> prohibited this parish from being saved:</h2>
 
-      <ul>
-      <% @parish.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @parish.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :Nombre %><br>
-    <%= f.text_field :Name %>
+      <div class="field">
+        <b><%= f.label :Name, raw("<strong>Nombre:</strong>"), :class=>"control-label" %></b><br>
+        <%= f.text_field :Name, :autocomplete => :off, :class=>"form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :Dirección, raw("<strong>Dirección:</strong>"), :class=>"control-label" %><br>
+        <%= f.text_field :address, :autocomplete => :off, :class=>"form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :Encargados, raw("<strong>Encargado:</strong>"), :class=>"control-label" %><br>
+        <%= f.text_field :managers_id, list: "members_list", :autocomplete => :off, :class=>"form-control" %>
+        <datalist id="members_list">
+          <% @members.each do |member| %>
+            <option id="<%= member.id %>" value="<%= member.fullName %>"></option>
+          <% end %>
+        </datalist>
+      </div>
+      <div class="field">
+        <%= f.label :Vicaría, raw("<strong>Vicaría:</strong>"), :class=>"control-label" %><br>
+        <%= f.select(:vicarage_id,@vicarages.collect {|vicarage| [ vicarage.Name, vicarage.id ] }, {include_blank: 'Seleccione una vicaría'},{:class=>'form-control'}) %>
+      </div>
+      <div class="actions" align="center">
+        <br/>
+        <%= f.submit :class => 'btn btn-primary btn-lg', :onclick => "get_manager_id()" %>
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :Dirección %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :Encargados %><br>
-    <%= f.text_field :managers_id %>
-  </div>
-  <div class="field">
-    <%= f.label :Vicaría %><br>
-    <%= f.number_field :vicarage_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit :class => 'btn btn-info'%>
-  </div>
-<% end %>
+</div>

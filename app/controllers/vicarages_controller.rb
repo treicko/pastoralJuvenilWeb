@@ -15,10 +15,12 @@ class VicaragesController < ApplicationController
   # GET /vicarages/new
   def new
     @vicarage = Vicarage.new
+    @members = Member.all
   end
 
   # GET /vicarages/1/edit
   def edit
+    @members = Member.all
   end
 
   # POST /vicarages

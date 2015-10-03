@@ -15,10 +15,14 @@ class ParishesController < ApplicationController
   # GET /parishes/new
   def new
     @parish = Parish.new
+    @vicarages = Vicarage.all
+    @members = Member.all
   end
 
   # GET /parishes/1/edit
   def edit
+    @vicarages = Vicarage.all
+    @members = Member.all
   end
 
   # POST /parishes
@@ -39,7 +43,7 @@ class ParishesController < ApplicationController
 
   # PATCH/PUT /parishes/1
   # PATCH/PUT /parishes/1.json
-  def update
+  def update 
     respond_to do |format|
       if @parish.update(parish_params)
         format.html { redirect_to @parish, success: 'La parroquia fue <strong>modificada</strong> exitosamete.' }
