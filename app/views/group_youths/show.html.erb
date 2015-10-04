@@ -1,34 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+<h1 align="center">Grupo juvenil</h1><br/>
+  <div class="col-lg-offset-4 col-md-offset-4 col-xs-12 col-sm-9 col-md-6 col-lg-6">
+    <p>
+      <strong>Nombre:</strong>
+      <%= @group_youth.Name %>
+    </p>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @group_youth.Name %>
-</p>
+    <p>
+      <strong>Lugar de Reunión:</strong>
+      <%= @group_youth.gatheringPlace %>
+    </p>
 
-<p>
-  <strong>Lugar de Reunión:</strong>
-  <%= @group_youth.gatheringPlace %>
-</p>
+    <p>
+      <strong>Horarios:</strong>
+      <%= @group_youth.schedules %>
+    </p>
 
-<p>
-  <strong>Horarios:</strong>
-  <%= @group_youth.schedules %>
-</p>
+    <p>
+      <strong>Encargados:</strong>
+      <%= @group_youth.managers_id %>
+    </p>
 
-<p>
-  <strong>Encargados:</strong>
-  <%= @group_youth.managers_id %>
-</p>
+    <p>
+      <strong>Fecha de Creación:</strong>
+      <%= @group_youth.creationDate %>
+    </p>
 
-<p>
-  <strong>Fecha de Creación:</strong>
-  <%= @group_youth.creationDate %>
-</p>
-
-<p>
-  <strong>Parroquia:</strong>
-  <%= @group_youth.parish_id %>
-</p>
-
-<%= link_to 'Modificar', edit_group_youth_path(@group_youth) %> |
-<%= link_to 'Lista de Grupos', group_youths_path %>
+    <p>
+      <strong>Parroquia:</strong>
+      <%= @group_youth.parish_id %>
+    </p>
+  </div>
+  <div class="col-lg-offset-4 col-md-offset-4 col-xs-12 col-sm-9 col-md-4 col-lg-4" align="center">
+    <br/>
+    <%= link_to 'Modificar', edit_group_youth_path(@group_youth), {:class=>"btn btn-primary btn-lg", :style=>'width:100%;'} %>
+    <br/><br/>
+    <%= link_to 'Lista de Grupos', group_youths_path, {:class=>"btn btn-success btn-lg", :style=>'width:100%;'} %>
+  </div>
+</div>

@@ -5,6 +5,8 @@ class GroupYouthsController < ApplicationController
   # GET /group_youths.json
   def index
     @group_youths = GroupYouth.all
+    @members = Member.all
+    @parishes = Parish.all
   end
 
   # GET /group_youths/1
@@ -15,10 +17,14 @@ class GroupYouthsController < ApplicationController
   # GET /group_youths/new
   def new
     @group_youth = GroupYouth.new
+    @members = Member.all
+    @parishes = Parish.all
   end
 
   # GET /group_youths/1/edit
   def edit
+    @members = Member.all
+    @parishes = Parish.all
   end
 
   # POST /group_youths

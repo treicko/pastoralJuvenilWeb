@@ -1,33 +1,43 @@
-<%= form_for(@member) do |f| %>
-  <% if @member.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
+<div class="container">
+  <div class="col-lg-offset-4 col-md-offset-4 col-xs-12 col-sm-6 col-md-4 col-lg-4">
+    <%= form_for(@member) do |f| %>
+      <% if @member.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
 
-      <ul>
-      <% @member.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @member.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :Nombre_Completo %><br>
-    <%= f.text_field :fullName %>
+      <div class="field">
+        <%= f.label :fullName, raw("<strong>Nombre completo:</strong>") %><br>
+        <%= f.text_field :fullName, :autocomplete => :off, :class=>"form-control" %>
+      </div>
+      <div class="field" align="center">
+        <%= f.label :birthDate, raw("<strong>Fecha de nacimiento:</strong>") %><br>
+        <%= f.date_select :birthDate, {:use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre'], :start_year => 1900, :end_year => 2015}  %>
+      </div>
+      <div class="field">
+        <%= f.label :phone, raw("<strong>Teléfono:</strong>") %><br>
+        <%= f.text_field :phone, :autocomplete => :off, :class=>"form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :grupo, raw("<strong>Nombre de grupo:</strong>"), :class=>"control-label" %><br>
+        <%= f.text_field :group_id, list: "groups_list", :autocomplete => :off, :class=>"form-control" %>
+        <datalist id="groups_list">
+          <% @groups.each do |group| %>
+            <option id="<%= group.id %>" value="<%= group.Name %>"></option>
+          <% end %>
+        </datalist>
+      </div>
+      <div class="actions" align="center">
+        <br/>
+        <%= f.submit :class => 'btn btn-primary btn-lg', :style=>'width:100%;' %>
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :Fecha_de_nacimiento %><br>
-    <%= f.date_select :birthDate, {:use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre'], :start_year => 1900, :end_year => 2015}  %>
-  </div>
-  <div class="field">
-    <%= f.label :teléfono %><br>
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :grupo %><br>
-    <%= f.number_field :group_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit :class => 'btn btn-info' %>
-  </div>
-<% end %>
+</div>

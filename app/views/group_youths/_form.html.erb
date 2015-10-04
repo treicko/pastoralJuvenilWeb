@@ -1,41 +1,56 @@
-<%= form_for(@group_youth) do |f| %>
-  <% if @group_youth.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@group_youth.errors.count, "error") %> prohibited this group_youth from being saved:</h2>
+<div class="container">
+  <div class="col-lg-offset-4 col-md-offset-4 col-xs-12 col-sm-6 col-md-4 col-lg-4">
+    <%= form_for(@group_youth) do |f| %>
+      <% if @group_youth.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@group_youth.errors.count, "error") %> prohibited this group_youth from being saved:</h2>
 
-      <ul>
-      <% @group_youth.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @group_youth.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :Nombre %><br>
-    <%= f.text_field :Name %>
+      <div class="field">
+        <%= f.label :Name, raw("<strong>Nombre de Grupo:</strong>") %><br>
+        <%= f.text_field :Name, :autocomplete => :off, :class=>"form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :gatheringPlace, raw("<strong>Lugar de Reunión:</strong>") %><br>
+        <%= f.text_field :gatheringPlace, :autocomplete => :off, :class=>"form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :schedules, raw("<strong>Horarios: </strong>") %><br>
+        <%= f.text_field :schedules, :autocomplete => :off, :class=>"form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :managers_id, raw("<strong>Encargado:</strong>"), :class=>"control-label" %><br>
+        <%= f.text_field :managers_id, list: "members_list", :autocomplete => :off, :class=>"form-control" %>
+          <datalist id="members_list">
+            <% @members.each do |member| %>
+              <option id="<%= member.id %>" value="<%= member.fullName %>"></option>
+            <% end %>
+          </datalist>
+      </div>
+      <div class="field" align="center">
+        <%= f.label :creationDate, raw("<strong>Fecha de Creación del Grupo:</strong>") %><br>
+        <%= f.date_select :creationDate, :autocomplete => :off, :class=>"form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :parish_id, raw("<strong>Parroquia:</strong>"), :class=>"control-label" %><br>
+        <%= f.text_field :parish_id, list: "parish_list", :autocomplete => :off, :class=>"form-control" %>
+          <datalist id="parish_list">
+            <% @parishes.each do |parish| %>
+              <option id="<%= parish.id %>" value="<%= parish.Name %>"></option>
+            <% end %>
+          </datalist>
+      </div>
+      <div class="actions">
+        <br/>
+        <%= f.submit :class => 'btn btn-primary btn-lg', :style=>'width:100%;'%>
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :Lugar_de_reunión %><br>
-    <%= f.text_field :gatheringPlace %>
-  </div>
-  <div class="field">
-    <%= f.label :Horarios %><br>
-    <%= f.text_field :schedules %>
-  </div>
-  <div class="field">
-    <%= f.label :Encargados %><br>
-    <%= f.text_field :managers_id %>
-  </div>
-  <div class="field">
-    <%= f.label :Fecha_de_creación %><br>
-    <%= f.date_select :creationDate %>
-  </div>
-  <div class="field">
-    <%= f.label :Parroquia %><br>
-    <%= f.number_field :parish_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit :class => 'btn btn-info'%>
-  </div>
-<% end %>
+</div>

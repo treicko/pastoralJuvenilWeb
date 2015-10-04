@@ -1,31 +1,85 @@
-<h1>Lista de Miembros</h1>
-
-<table class="table table-striped table-hover ">
-  <thead>
-    <tr>
-      <th>Nombre Completo</th>
-      <th>Fecha de Nacimiento</th>
-      <th>Tel&eacute;fono</th>
-      <th>Gurpo</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @members.each do |member| %>
+<h1 align="center">Lista de Miembros</h1><br/>
+<div class="row" align="center">
+  <table class="table table-striped table-hover " style="width:80%">
+    <thead>
       <tr>
-        <td><%= member.fullName %></td>
-        <td><%= member.birthDate %></td>
-        <td><%= member.phone %></td>
-        <td><%= member.group_id %></td>
-        <td><%= link_to 'Ver', member %></td>
-        <td><%= link_to 'Modificar', edit_member_path(member) %></td>
-        <td><%= link_to 'Eliminar', member, method: :delete, data: { confirm: 'Esta seguro de eliminar este Integrante?' } %></td>
+        <th>Nombre Completo</th>
+        <th>Tel&eacute;fono</th>
+        <th>Grupo</th>
+        <th>Parroquia</th>
+        <th>Vicar&iacute;a</th>
+        <th colspan="3" style="text-align:center;">Acciones</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @members.each do |member| %>
+        <tr>
+          <td style="vertical-align:middle; width:20%"><%= member.fullName %></td>
+          <td style="vertical-align:middle; width:20%"><%= member.phone %></td>
+          <td style="vertical-align:middle; width:20%"><%= member.group_id %></td>
+          <td style="vertical-align:middle; width:20%">
+            <%= if(
+              (member.group_id != nil)&&
+              (GroupYouth.where(Name: member.group_id).first != nil)&&
+              (GroupYouth.where(Name: member.group_id).first.parish_id != nil)
+              )
+            then Parish.where(Name: (GroupYouth.where(Name: member.group_id).first.parish_id )).first.Name end %>
+          </td>
+          <td style="vertical-align:middle; width:20%">
+            <%= if(
+              (member.group_id != nil)&&
+              (GroupYouth.where(Name: member.group_id).first != nil)&&
+              (Parish.where(Name: (GroupYouth.where(Name: member.group_id)).first.parish_id).first != nil)&&
+              (GroupYouth.where(Name: member.group_id).first.parish_id != nil)&&
+              (Parish.where(Name: (GroupYouth.where(Name: member.group_id)).first.parish_id).first.vicarage_id != nil)
+              ) 
+            then Vicarage.find(Parish.where(Name: (GroupYouth.where(Name: member.group_id).first.parish_id)).first.vicarage_id).Name 
+            end %>
+          </td>
+          <td style="vertical-align:middle; width:10%">
+              <%= link_to member, class: 'btn btn-primary', title: "Ver Integrante" do %>
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+              <% end %>
+            </td>
+            <td style="vertical-align:middle; width:10%">
+              <%= link_to edit_member_path(member), class: 'btn btn-warning', title: "Modificar Integrante" do %>
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <% end %>
+            </td>
+            <td style="vertical-align:middle; width:10%">
+              <button class="btn btn-danger" data-toggle="modal" data-target="#modal_destroy" value="<%=member.id%>" onclick="setDeleteButtonIdAndValue(id,value)" title="Eliminar Integrante">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              </button>
+            </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<%#= link_to 'New Member', new_member_path %>
+<div class="modal" id="modal_destroy">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background:#F04124;">
+        <h4 class="modal-title" style="color:white;">Atenci&oacute;n!</h4>
+      </div>
+      <div class="modal-body">
+        <p>Est&aacute; seguro que desea <strong>eliminar</strong> este Integrante?</p>
+      </div>
+      <div class="modal-footer">
+        <a id="drop_member" class="btn btn-danger" rel="nofollow" data-method="delete">Aceptar</a>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%#= link_to 'New Vicarage', new_vicarage_path %>
+<script type="text/javascript">
+  function setDeleteButtonIdAndValue(button_id, button_value)
+  {
+    var member_id =button_value.toString();
+    $("#drop_member").attr("href", 'members/'+member_id)
+  }
+</script>

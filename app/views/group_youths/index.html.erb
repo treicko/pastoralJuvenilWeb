@@ -1,35 +1,76 @@
-<h1>Lista de Grupos Juveniles</h1>
-
-<table class="table table-striped table-hover ">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Lugar de reunión</th>
-      <th>Horarios</th>
-      <th>Encargados</th>
-      <th>Fecha de Creación</th>
-      <th>Parroquia</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @group_youths.each do |group_youth| %>
+<h1 align="center">Lista de Grupos</h1><br/>
+<div class="row" align="center">
+  <table class="table table-striped table-hover" style="width:80%">
+    <thead>
       <tr>
-        <td><%= group_youth.Name %></td>
-        <td><%= group_youth.gatheringPlace %></td>
-        <td><%= group_youth.schedules %></td>
-        <td><%= group_youth.managers_id %></td>
-        <td><%= group_youth.creationDate %></td>
-        <td><%= group_youth.parish_id %></td>
-        <td><%= link_to 'Ver', group_youth %></td>
-        <td><%= link_to 'Modificar', edit_group_youth_path(group_youth) %></td>
-        <td><%= link_to 'Eliminar', group_youth, method: :delete, data: { confirm: 'Está seguro que desea eliminar este grupo juvenil?' } %></td>
+        <th>Nombre</th>
+        <th>Lugar de reunión</th>
+        <th>Horarios</th>
+        <th>Encargados</th>
+        <th>Vicar&iacute;a</th>
+        <th>Parroquia</th>
+        <th colspan="3" style="text-align:center;">Acciones</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @group_youths.each do |group_youth| %>
+        <tr>
+          <td style="vertical-align:middle; width:20%"><%= group_youth.Name %></td>
+          <td style="vertical-align:middle; width:30%"><%= group_youth.gatheringPlace %></td>
+          <td style="vertical-align:middle; width:15%"><%= group_youth.schedules %></td>
+          <td style="vertical-align:middle; width:15%"><%= group_youth.managers_id %></td>
+          <td style="vertical-align:middle; width:10%">
+          <%= if(
+            (group_youth.parish_id != nil)&&
+            (Parish.where(Name: group_youth.parish_id).first != nil)&&
+            (Parish.where(Name: group_youth.parish_id).first.vicarage_id != nil)
+            )
+            then Vicarage.find(Parish.where(Name: group_youth.parish_id).first.vicarage_id).Name end %></td>
+          <td style="vertical-align:middle; width:10%"><%= group_youth.parish_id %></td>
+          <td style="vertical-align:middle; width:10%">
+            <%= link_to group_youth, class: 'btn btn-primary', title: "Ver Grupo" do %>
+              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            <% end %>
+          </td>
+          <td style="vertical-align:middle; width:10%">
+            <%= link_to edit_group_youth_path(group_youth), class: 'btn btn-warning', title: "Modificar Grupo" do %>
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <% end %>
+          </td>
+          <td style="vertical-align:middle; width:10%">
+            <button class="btn btn-danger" data-toggle="modal" data-target="#modal_destroy" value="<%=group_youth.id%>" onclick="setDeleteButtonIdAndValue(id,value)" title="Eliminar Grupo">
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </button>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<%#= link_to 'New Group youth', new_group_youth_path %>
+<div class="modal" id="modal_destroy">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background:#F04124;">
+        <h4 class="modal-title" style="color:white;">Atenci&oacute;n!</h4>
+      </div>
+      <div class="modal-body">
+        <p>Est&aacute; seguro que desea <strong>eliminar</strong> este grupo?</p>
+      </div>
+      <div class="modal-footer">
+        <a id="drop_group" class="btn btn-danger" rel="nofollow" data-method="delete">Aceptar</a>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%#= link_to 'New Vicarage', new_vicarage_path %>
+<script type="text/javascript">
+  function setDeleteButtonIdAndValue(button_id, button_value)
+  {
+    var group_id =button_value.toString();
+    $("#drop_group").attr("href", 'group_youths/'+group_id)
+  }
+</script>

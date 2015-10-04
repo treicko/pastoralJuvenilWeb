@@ -3,12 +3,15 @@ Rails.application.routes.draw do
   resources :vicarages
     get "vicarages/:id" => "vicarages#destroy"
   resources :parishes
+    get "parishes/:id" => "parishes#destroy"
 
   resources :group_youths
+    get "group_youths/:id" => "group_youths#destroy"
 
   root 'members#index'
-  resources :members
 
+  resources :members
+    get "members/:id" => "members#destroy"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
