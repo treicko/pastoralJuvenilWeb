@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151004000708) do
+ActiveRecord::Schema.define(version: 20151004082500) do
 
   create_table "group_youths", force: true do |t|
     t.string   "Name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20151004000708) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "group_id"
+    t.string   "email"
   end
 
   create_table "parishes", force: true do |t|

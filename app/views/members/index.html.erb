@@ -22,7 +22,9 @@
             <%= if(
               (member.group_id != nil)&&
               (GroupYouth.where(Name: member.group_id).first != nil)&&
-              (GroupYouth.where(Name: member.group_id).first.parish_id != nil)
+              (GroupYouth.where(Name: member.group_id).first.parish_id != nil)&&
+              (Parish.where(Name: (GroupYouth.where(Name: member.group_id).first)).first != nil)&&
+              (Parish.where(Name: (GroupYouth.where(Name: member.group_id).first.parish_id )).first.Name != nil)
               )
             then Parish.where(Name: (GroupYouth.where(Name: member.group_id).first.parish_id )).first.Name end %>
           </td>
